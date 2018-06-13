@@ -6,7 +6,6 @@ var Twitter = require('twitter');
 
 
 var spotify = new Spotify(keys.spotify);
-// console.log(spotify);
 var client = new Twitter(keys.twitter);
 
 spotify
