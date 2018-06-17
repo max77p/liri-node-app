@@ -1,0 +1,10 @@
+[
+  "Tweet number 1: Thu Jun 14 21:46:04 +0000 2018 and  Tweet was: excited for tomorrow's game #crvsramos"
+][
+  "Tweet number 2: Thu Jun 14 17:21:33 +0000 2018 and  Tweet was: world cup has started! #FifaWorldCup2018"
+][
+  "Album: \"Biz's Baddest Beats: The Best Of Biz Markie\"",
+  "Artist: \"Biz Markie\"",
+  "Song: \"Just A Friend\"",
+  "Link to song: \"https://open.spotify.com/track/3yNVfRQlUPViUh8O2V9SQn\""
+]

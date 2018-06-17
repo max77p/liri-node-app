@@ -53,6 +53,11 @@ function searchMovies(elMovie) {
             console.log("Language: " + parsedBody.Language);
             console.log("Plot: " + parsedBody.Plot);
             console.log("Actors: " + parsedBody.Actors);
+
+            //push log.txt info to array then call function which appends to log info
+            var searchinfo = [];
+            searchinfo.push("Movie Year: " + parsedBody.Year, "IMDB Rating: "+parsedBody.Ratings[0].Value,"Rotten Tomatoes Rating: "+parsedBody.Ratings[0].Value,"Country: "+parsedBody.Country,"Language: "+parsedBody.Language,"Plot: "+parsedBody.Plot,"Actors: "+parsedBody.Actors);
+            logInfo(searchinfo);
         }
     });
 }
@@ -63,6 +68,11 @@ function searchTweets(elTweet) { //search tweets of authenticated user up to 20 
             console.log(tweets.length);
             for (var i = 0; i < tweets.length; i++) {
                 console.log("Tweet number " + (i + 1) + ": " + tweets[i].created_at + "\n" + " Tweet was: " + tweets[i].text + " \n");
+
+            //push log.txt info to array then call function which appends to log info
+            var searchinfo = [];
+            searchinfo.push("Tweet number " + (i + 1) + ": " + tweets[i].created_at + " and " + " Tweet was: " + tweets[i].text);
+            logInfo(searchinfo);
             }
         }
     });
@@ -85,10 +95,15 @@ function searchSpotify(elName) { //takes user input and searches spotify
             var linkinfo = JSON.stringify(response.tracks.items[0].external_urls.spotify, null, 2); //song link
 
             // var main=JSON.stringify(response.tracks, null, 2);
-            console.log("Album: "+albuminfo);
-            console.log("Artist: "+artistinfo);
-            console.log("Song: "+songinfo);
-            console.log("Link to song: "+linkinfo);
+            console.log("Album: " + albuminfo);
+            console.log("Artist: " + artistinfo);
+            console.log("Song: " + songinfo);
+            console.log("Link to song: " + linkinfo);
+
+            //push log.txt info to array then call function which appends to log info
+            var searchinfo = [];
+            searchinfo.push("Album: " + albuminfo, "Artist: " + artistinfo, "Song: " + songinfo, "Link to song: " + linkinfo);
+            logInfo(searchinfo);
         })
         .catch(function (err) {
             console.log(err);
@@ -108,10 +123,21 @@ function readfromFile() {
             var songlist = JSON.parse(data);
             for (ele in songlist) {
                 // console.log(songlist[ele]);
-                var randomOrder=Math.floor(Math.random() * songlist[ele].length);
+                var randomOrder = Math.floor(Math.random() * songlist[ele].length);
                 // console.log(randomOrder);
-                searchSpotify(songlist[ele][randomOrder]);        
+                searchSpotify(songlist[ele][randomOrder]);
             }
         }
     });
+}
+
+function logInfo(elSearch) {
+    fs.appendFile("log.txt", JSON.stringify(elSearch, null, 2), "UTF-8", function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Log file written");
+        }
+    })
+
 }
