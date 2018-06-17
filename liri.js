@@ -1,4 +1,5 @@
 require("dotenv").config();
+var fs = require('fs');
 var request = require('request');
 var keys = require("./keys");
 var Spotify = require('node-spotify-api');
@@ -32,6 +33,8 @@ if (userInput === 'spotify-this-song') {
     } else {
         searchMovies(searchQuery);
     }
+} else if (userInput === "do-what-it-says") {
+    readfromFile();
 }
 
 function searchMovies(elMovie) {
@@ -40,17 +43,16 @@ function searchMovies(elMovie) {
         // console.log(JSON.parse(body));
         if (JSON.parse(body).Response === "False") {
             console.log("please try search again");
-        } 
-        else if (!error && response.statusCode === 200) {
+        } else if (!error && response.statusCode === 200) {
             // 
             const parsedBody = JSON.parse(body);
-                console.log("Movie Year: "+parsedBody.Year);
-                console.log("IMDB Rating: "+parsedBody.Ratings[0].Value);
-                console.log("Rotten Tomatoes Rating: "+parsedBody.Ratings[0].Value);
-                console.log("Country: "+parsedBody.Country);
-                console.log("Language: "+parsedBody.Language);
-                console.log("Plot: "+parsedBody.Plot);
-                console.log("Actors: "+parsedBody.Actors);
+            console.log("Movie Year: " + parsedBody.Year);
+            console.log("IMDB Rating: " + parsedBody.Ratings[0].Value);
+            console.log("Rotten Tomatoes Rating: " + parsedBody.Ratings[0].Value);
+            console.log("Country: " + parsedBody.Country);
+            console.log("Language: " + parsedBody.Language);
+            console.log("Plot: " + parsedBody.Plot);
+            console.log("Actors: " + parsedBody.Actors);
         }
     });
 }
@@ -91,4 +93,25 @@ function searchSpotify(elName) { //takes user input and searches spotify
         .catch(function (err) {
             console.log(err);
         });
+}
+
+function readfromFile() {
+    fs.readFile("random.txt", "UTF-8", function (err, data) {
+        if (err) {
+            if (err.errno == -2) {
+                console.log("file doesn't exist");
+                // createAbilities();
+            } else {
+                console.log(err);
+            }
+        } else {
+            var songlist = JSON.parse(data);
+            for (ele in songlist) {
+                // console.log(songlist[ele]);
+                var randomOrder=Math.floor(Math.random() * songlist[ele].length);
+                // console.log(randomOrder);
+                searchSpotify(songlist[ele][randomOrder]);        
+            }
+        }
+    });
 }
