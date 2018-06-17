@@ -56,7 +56,7 @@ function searchMovies(elMovie) {
 
             //push log.txt info to array then call function which appends to log info
             var searchinfo = [];
-            searchinfo.push("Movie Year: " + parsedBody.Year, "IMDB Rating: "+parsedBody.Ratings[0].Value,"Rotten Tomatoes Rating: "+parsedBody.Ratings[0].Value,"Country: "+parsedBody.Country,"Language: "+parsedBody.Language,"Plot: "+parsedBody.Plot,"Actors: "+parsedBody.Actors);
+            searchinfo.push("COMMAND: movie-this","Movie Year: " + parsedBody.Year, "IMDB Rating: "+parsedBody.Ratings[0].Value,"Rotten Tomatoes Rating: "+parsedBody.Ratings[0].Value,"Country: "+parsedBody.Country,"Language: "+parsedBody.Language,"Plot: "+parsedBody.Plot,"Actors: "+parsedBody.Actors);
             logInfo(searchinfo);
         }
     });
@@ -71,7 +71,7 @@ function searchTweets(elTweet) { //search tweets of authenticated user up to 20 
 
             //push log.txt info to array then call function which appends to log info
             var searchinfo = [];
-            searchinfo.push("Tweet number " + (i + 1) + ": " + tweets[i].created_at + " and " + " Tweet was: " + tweets[i].text);
+            searchinfo.push("COMMAND: my-tweets", "Tweet number " + (i + 1) + ": " + tweets[i].created_at + " and " + " Tweet was: " + tweets[i].text);
             logInfo(searchinfo);
             }
         }
@@ -102,7 +102,7 @@ function searchSpotify(elName) { //takes user input and searches spotify
 
             //push log.txt info to array then call function which appends to log info
             var searchinfo = [];
-            searchinfo.push("Album: " + albuminfo, "Artist: " + artistinfo, "Song: " + songinfo, "Link to song: " + linkinfo);
+            searchinfo.push("COMMAND: spotify-this-song", "Album: " + albuminfo, "Artist: " + artistinfo, "Song: " + songinfo, "Link to song: " + linkinfo);
             logInfo(searchinfo);
         })
         .catch(function (err) {
