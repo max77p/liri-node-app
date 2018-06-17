@@ -14,21 +14,21 @@ var userInput = process.argv[2]; //takes in command input to trigger specific se
 var searchQuery = process.argv.slice(3).join(' '); // combines anything typed from arg[3] and on with spaces and passes it as one search query
 
 if (userInput === 'spotify-this-song') {
-    if (!searchQuery) { //user has to enter search query with 'spotify-this-song', if not tell them to do so
-        console.log("Please add a search query after 'spotify-this-song'");
+    if (!searchQuery) { //user has to enter search query with 'spotify-this-song', if not tell default to predefined list
+        readfromFile();
     } else {
         searchSpotify(searchQuery);
         // console.log(process.argv);
     }
 } else if (userInput === 'my-tweets') {
-    if (!searchQuery) { //user doesn't have to add extra parameters, if they do tell them to only enter 'my-tweets'
+    if (!searchQuery) { //user doesn't have to add extra parameters, if they do tell them to only enter 'my-tweets' only
         console.log(searchQuery);
         searchTweets(userInput);
     } else {
         console.log("Please don't include anything with 'my-tweets'");
     }
 } else if (userInput === 'movie-this') {
-    if (!searchQuery) { //user has to enter search query with 'movie-this', if not tell them to do so
+    if (!searchQuery) { //user has to enter search query with 'movie-this', if not default to 'mr.nobody'
         searchMovies("Mr.Nobody");
     } else {
         searchMovies(searchQuery);
@@ -85,10 +85,10 @@ function searchSpotify(elName) { //takes user input and searches spotify
             var linkinfo = JSON.stringify(response.tracks.items[0].external_urls.spotify, null, 2); //song link
 
             // var main=JSON.stringify(response.tracks, null, 2);
-            console.log(albuminfo);
-            console.log(artistinfo);
-            console.log(songinfo);
-            console.log(linkinfo);
+            console.log("Album: "+albuminfo);
+            console.log("Artist: "+artistinfo);
+            console.log("Song: "+songinfo);
+            console.log("Link to song: "+linkinfo);
         })
         .catch(function (err) {
             console.log(err);
