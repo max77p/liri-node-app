@@ -16,10 +16,10 @@ Language Interpretation and Recognition Interface
             TWITTER_ACCESS_TOKEN_SECRET=
 
 3. Liri will take one of the following commands:
-            1. my-tweets
-            1. spotify-this-song
-            1. movie-this
-            1. do-what-it-says
+            * my-tweets
+            * spotify-this-song
+            * movie-this
+            * do-what-it-says
 4. The following are examples on how to initiate Liri:
             a) node liri.js my-tweets
             b) node liri.js spotify-this-song "drake take care"
