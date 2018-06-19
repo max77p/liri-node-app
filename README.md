@@ -1,7 +1,7 @@
 # This is the liri-node-app
 Language Interpretation and Recognition Interface
 
-### Here are the features of the game
+### Here are the features of the Node.js App
 
 1. This is a command line app using Node.js
 
